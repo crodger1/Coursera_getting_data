@@ -26,16 +26,21 @@ req <- GET("https://api.github.com/users/jtleek/repos", gtoken)
 stop_for_status(req)
 content(req)
 
-install.packages("jsonlite")
-library(jsonlite)
+# install.packages("jsonlite")
+# library(jsonlite)
 
 json1=content(req)
 json2=jsonlite::fromJSON(toJSON(json1))
-head(json2)
-df<-fromJSON(json1)
+
+## getting HTML data
+con=url("http://biostat.jhsph.edu/~jleek/contact.html")
+htmlCode=readLines(con)
+close(con)
+head(htmlCode)
+
+nchar(htmlCode[10])
+nchar(htmlCode[20])
+nchar(htmlCode[30])
+nchar(htmlCode[100])
 
 
-# OR:
-# req <- with_config(gtoken, GET("https://api.github.com/users/jtleek/repos"))
-# stop_for_status(req)
-# content(req)
