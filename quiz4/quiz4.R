@@ -44,18 +44,21 @@ grep("^United",gdp$countryNames)
 ################
 ## question 4 ##
 ################
-
-
 library(plyr)
 
 ed<-read.csv("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv",stringsAsFactors=FALSE)
 head(ed[,1:4])
 tail(ed[,1:4])
 
-combine<-merge(ed,gdp2,by.x="CountryCode",by.y="V1")
-head(combine[,c("CountryCode","Short.Name","V4")])
+combine<-merge(ed,gdp,by.x="CountryCode",by.y="V1")
+head(combine[,c("CountryCode","Short.Name","countryNames")])
 
 nrow(combine)  ## number of rows in the combined data
+names(combine)
+
+combine2<-combine[grep("*[Ff]iscal*",combine$Special.Notes),]
+
+
 
 
 ################
