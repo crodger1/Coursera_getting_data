@@ -56,8 +56,8 @@ head(combine[,c("CountryCode","Short.Name","countryNames")])
 nrow(combine)  ## number of rows in the combined data
 names(combine)
 
-combine2<-combine[grep("*[Ff]iscal*",combine$Special.Notes),]
-
+combine2<-combine[grep("^[Ff]iscal.*June",combine$Special.Notes),]
+dim(combine2)
 
 
 
